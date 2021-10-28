@@ -45,26 +45,26 @@ public class RobotContainer {
         new Shoot(m_shooter), 
         true
       );
-    new JoystickButton(
-        m_XboxController, 
-        Button.kX.value).whenPressed(
-          new Shoot(m_shooter),true
-      ).whenReleased(
-        new ShootStop(m_shooter), true
-      );
+    // new JoystickButton(
+    //     m_XboxController, 
+    //     Button.kX.value).whenPressed(
+    //       new Shoot(m_shooter),true
+    //   ).whenReleased(
+    //     new ShootStop(m_shooter), true
+    //   );
     new JoystickButton(
       m_XboxController,
       Button.kY.value).toggleWhenPressed(
         new Shoot(m_shooter).shoot(),
         true
       );
-    new JoystickButton(
-      m_XboxController,
-      button.kY.value).whenPressed(
-        new Shoot(m_shooter).shoot(), true
-      ).whenReleased(
-        new ShootStop(m_shooter, true)
-      );
+    // new JoystickButton(
+    //   m_XboxController,
+    //   button.kY.value).whenPressed(
+    //     new Shoot(m_shooter).shoot(), true
+    //   ).whenReleased(
+    //     new ShootStop(m_shooter, true)
+    //   );
     
     
   }
