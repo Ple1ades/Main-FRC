@@ -72,7 +72,10 @@ public class Shooter extends SubsystemBase{
         m_belt_back.set(ControlMode.PercentOutput, -Constants.Shooter.beltSpeed);
     }
     public void betDown() {
-        m_belt_front.set(ControlMode.PercentOutput, -Constants.Shooter.beltSpeed);
-        m_belt_back.set(ControlMode.PercentOutput, -Constants.Shooter.beltSpeed);
+        m_belt_front.set(ControlMode.PercentOutput, Constants.Shooter.beltSpeed);
+        m_belt_back.set(ControlMode.PercentOutput, Constants.Shooter.beltSpeed);
+    }
+    public void shoot(){
+        m_controller.setReference(Constants.Shooter.maxVoltage, ControlType.kDutyCycle);
     }
 }
