@@ -21,11 +21,13 @@ public class Shoot extends CommandBase{
     @Override
     public void execute() {
         m_shooter.setShooter(Constants.Shooter.maxRPM, 5000);
+        m_shooter.beltUp();
     }
 
     @Override
     public void end(boolean interrupted){
         m_shooter.resetShooter();
+        m_shooter.beltDown();
     }
 
     @Override

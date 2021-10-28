@@ -37,6 +37,7 @@ public class Shooter extends SubsystemBase{
         //Get shooter encoder
         m_encorder = m_shooterMotor.getEncoder();
         //Link encoder to controller
+        m_controller = m_shooterMotor.getPIDController();
         m_controller.setFeedbackDevice(m_encorder);
         m_controller.setP(Constants.Shooter.kP);
         m_controller.setI(Constants.Shooter.kI);
@@ -67,11 +68,11 @@ public class Shooter extends SubsystemBase{
         }
         return false;
     }
-    public void betUp() {
+    public void beltUp() {
         m_belt_front.set(ControlMode.PercentOutput, -Constants.Shooter.beltSpeed);
         m_belt_back.set(ControlMode.PercentOutput, -Constants.Shooter.beltSpeed);
     }
-    public void betDown() {
+    public void beltDown() {
         m_belt_front.set(ControlMode.PercentOutput, Constants.Shooter.beltSpeed);
         m_belt_back.set(ControlMode.PercentOutput, Constants.Shooter.beltSpeed);
     }

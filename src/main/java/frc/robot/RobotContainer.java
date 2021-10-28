@@ -7,10 +7,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.ShootStop;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -39,34 +37,13 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(
-      m_XboxController, 
-      Button.kX.value).toggleWhenPressed(
-        new Shoot(m_shooter), 
-        true
-      );
-    // new JoystickButton(
-    //     m_XboxController, 
-    //     Button.kX.value).whenPressed(
-    //       new Shoot(m_shooter),true
-    //   ).whenReleased(
-    //     new ShootStop(m_shooter), true
-    //   );
-    new JoystickButton(
-      m_XboxController,
-      Button.kY.value).toggleWhenPressed(
-        new Shoot(m_shooter).shoot(),
-        true
-      );
-    // new JoystickButton(
-    //   m_XboxController,
-    //   button.kY.value).whenPressed(
-    //     new Shoot(m_shooter).shoot(), true
-    //   ).whenReleased(
-    //     new ShootStop(m_shooter, true)
-    //   );
-    
-    
+     new JoystickButton(
+         m_XboxController, 
+         Button.kX.value).whenPressed(
+           new Shoot(m_shooter),true
+       ).whenReleased(
+         new ShootStop(m_shooter), true
+       );
   }
 
   /**

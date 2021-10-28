@@ -21,7 +21,14 @@ public final class Constants {
         public static final double kI = 0.0;
         public static final double kD = 0.0;
         public static final double beltSpeed = 1;
-        public static final int maxRPM = 5500;
+        public static final int maxRPM = 1200;
         public static final int maxVoltage = 10;
+    }
+
+    public final class Drivetrain{
+        public final static int leftFront = 24;
+        public final static int leftBack = 13;
+        public final static int rightFront = 23;
+        public final static int rightBack = 15;
     }
 }
