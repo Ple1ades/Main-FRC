@@ -76,6 +76,10 @@ public class Shooter extends SubsystemBase{
         m_belt_front.set(ControlMode.PercentOutput, Constants.Shooter.beltSpeed);
         m_belt_back.set(ControlMode.PercentOutput, Constants.Shooter.beltSpeed);
     }
+    public void beltStop() {
+        m_belt_front.set(ControlMode.PercentOutput,0.0);
+        m_belt_back.set(ControlMode.PercentOutput,0.0);
+    }
     public void shoot(){
         m_controller.setReference(Constants.Shooter.maxVoltage, ControlType.kDutyCycle);
     }
