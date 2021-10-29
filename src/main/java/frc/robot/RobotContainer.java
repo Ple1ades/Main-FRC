@@ -7,11 +7,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import frc.robot.commands.Drivetrain;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.ShootStop;
+import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -19,15 +23,24 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
+
 public class RobotContainer {
+  
   // The robot's subsystems and commands are defined here...
   public final Shooter m_shooter = new Shooter();
+  public final DrivetrainSubsystem m_drive = new DrivetrainSubsystem();
 
   private final XboxController m_XboxController = new XboxController(0);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    m_drive.setDefaultCommand(
+      new Drivetrain(m_drive, () -> m_XboxController.getY(Hand.kLeft), 
+      () -> m_XboxController.getX(Hand.kRight))
+      );
+    
   }
 
   /**
@@ -37,22 +50,28 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-     new JoystickButton(
+    new JoystickButton(
          m_XboxController, 
          Button.kX.value).whenPressed(
            new Shoot(m_shooter),true
        ).whenReleased(
          new ShootStop(m_shooter), true
-       );
+    );
+    
   }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return null;
+  //  * @return the command to run in autonomous
+  //  */
+  // public Command getAutonomousCommand() {
+  //   // An ExampleCommand will run in autonomous
+  //   return null;
+  // }
+
+  public DrivetrainSubsystem getDriveTrain() {
+    return m_drive;
+
   }
 }
