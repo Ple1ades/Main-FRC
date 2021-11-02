@@ -1,2 +1,2 @@
 # Solo-FRC
-LIVESHARE: https://prod.liveshare.vsengsaas.visualstudio.com/join?1ED336AA07C47807DAF138A27BFE2A4E0D4A
+LIVESHARE: https://prod.liveshare.vsengsaas.visualstudio.com/join?CA9078E26DC2CA799B2E4ACDB20CEDF7995A
