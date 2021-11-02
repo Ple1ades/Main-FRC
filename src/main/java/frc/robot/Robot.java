@@ -4,12 +4,11 @@
 
 package frc.robot;
 
-import java.io.FileSystem;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 
 /**
@@ -34,9 +33,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    try {
-      //Path trajectoryPath = FileSystem
-    }
+    
     m_robotContainer = new RobotContainer();
   }
 
