@@ -22,19 +22,22 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  String trajectoryJSON = "paths/[Set Name]";
+  String trajectoryJSON = "paths/straightline.wpilib.json";
   Trajectory trajectory = new Trajectory();
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
 
+  
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
-    
-    m_robotContainer = new RobotContainer();
+     try {
+        Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
+        trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+     } catch (IOException ex) {
+        DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
+     }
   }
 
   /**
