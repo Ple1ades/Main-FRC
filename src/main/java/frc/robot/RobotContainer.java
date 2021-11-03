@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.Drivetrain;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.Belt;
+import frc.robot.commands.BeltStop;
 import frc.robot.commands.ShootStop;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.Shooter;
@@ -57,7 +59,6 @@ public class RobotContainer {
        ).whenReleased(
          new ShootStop(m_shooter), true
     );
-    
   }
 
   /**

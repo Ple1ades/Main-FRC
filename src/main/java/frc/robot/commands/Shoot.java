@@ -21,7 +21,10 @@ public class Shoot extends CommandBase{
     @Override
     public void execute() {
         m_shooter.setShooter(Constants.Shooter.maxRPM, 5000);
-        m_shooter.beltDown();
+        if (m_shooter.getVelocity() >= Constants.Shooter.maxRPM/4){
+            m_shooter.beltStop();
+        }
+        // m_shooter.beltDown();
     }
 
     @Override
