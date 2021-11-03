@@ -4,12 +4,17 @@
 
 package frc.robot;
 
-
 import edu.wpi.first.wpilibj.TimedRobot;
+
+import java.io.IOException;
+
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
+import java.nio.file.Path;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -30,15 +35,13 @@ public class Robot extends TimedRobot {
    */
 
   
-  @Override
+ @Override
   public void robotInit() {
-     try {
-        Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
-        trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
-     } catch (IOException ex) {
-        DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
-     }
+    m_robotContainer = new RobotContainer();
+
+    setNetworkTablesFlushEnabled(true);
   }
+
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like
