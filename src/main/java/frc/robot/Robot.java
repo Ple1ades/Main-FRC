@@ -27,19 +27,26 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  String trajectoryJSON = "paths/straightline.wpilib.json";
-  Trajectory trajectory = new Trajectory();
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
 
+<<<<<<< HEAD
   
  @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
 
     setNetworkTablesFlushEnabled(true);
+=======
+  @Override
+  public void robotInit() {
+    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
+    // autonomous chooser on the dashboard.
+    
+    m_robotContainer = new RobotContainer();
+>>>>>>> 4403a19ed88d09639b0ad9bf2093b80ae409dfbf
   }
 
 
