@@ -28,22 +28,53 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
     public DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
     
+    //private final SimpleMotorFeedforward m_feedforward = new SimpleMotorFeedforward(1, 3);
+    
     private PIDController m_leftPIDController;
     private PIDController m_rightPIDController;
+    
     private edu.wpi.first.wpilibj.Encoder m_leftEncoder;
     private edu.wpi.first.wpilibj.Encoder m_rightEncoder;
     
-    public void DrivetrainSubsystem(double speed, double rotation){
+    public void DrivetrainSubsystem(){
         //clamp to between -1.0 and 1.0 for speed and rotation to prevent errors
-      m_drive.arcadeDrive(speed, rotation);
-      // m_leftEncoder = new edu.wpi.first.wpilibj.Encoder(0,1);
-      // m_rightEncoder = new edu.wpi.first.wpilibj.Encoder(2,3);
+      m_left.setInverted(true);
+      m_right.setInverted(true);
 
-      // m_leftPIDController = new PIDController(Constants.Drivetrain.kP, Constants.Drivetrain.kI, Constants.Drivetrain.kD);
-      // m_rightPIDController = new PIDController(Constants.Drivetrain.kP, Constants.Drivetrain.kI, Constants.Drivetrain.kD);
+      m_leftEncoder = new edu.wpi.first.wpilibj.Encoder(0,1);
+      m_rightEncoder = new edu.wpi.first.wpilibj.Encoder(2,3);
       
-      // m_leftEncoder.setDistancePerPulse(2 * Math.PI * Constants.Drivetrain.kWheelRadius / Constants.Drivetrain.kEncoderResolution);
-      // m_rightEncoder.setDistancePerPulse(2 * Math.PI * Constants.Drivetrain.kWheelRadius / Constants.Drivetrain.kEncoderResolution);
+      m_leftPIDController = new PIDController(Constants.Drivetrain.kP, Constants.Drivetrain.kI, Constants.Drivetrain.kD);
+      m_rightPIDController = new PIDController(Constants.Drivetrain.kP, Constants.Drivetrain.kI, Constants.Drivetrain.kD);
+      
+      m_leftEncoder.setDistancePerPulse(2 * Math.PI * Constants.Drivetrain.kWheelRadius / Constants.Drivetrain.kEncoderResolution);
+      m_rightEncoder.setDistancePerPulse(2 * Math.PI * Constants.Drivetrain.kWheelRadius / Constants.Drivetrain.kEncoderResolution);
+    }
+    
+    
+    // public void setSpeed(DifferentialDriveWheelSpeeds speeds){
+    //   int leftSpeed = m_feedforward.calculate(Constants.Drivetrain.leftSpeed);
+    //   int rightSpeed = m_feedforward.calculate(Constants.Drivetrain.rightSpeed);
+    
+    //   double leftPIDout = m_leftPIDController.calculate(m_leftEncoder.getRate(), Constants.Drivetrain.leftSpeed);
+    //   double rightPIDout = m_rightPIDController.calculate(m_rightEncoder.getRate(), Constants.Drivetrain.rightSpeed);
+
+    //   m_left.setVoltage(leftSpeed + leftPIDout);
+    //   m_right.setVoltage(rightSpeed + rightPIDout);
+    // }
+    public void arcadeDrive(double speed, double rotation){
+      m_drive.arcadeDrive(speed, rotation);
+    }
+
+    public void PIDAuto (double speed, double rotation, double dist) {
+        m_drive.setSafetyEnabled(false);
+        m_leftEncoder.reset();
+        m_rightEncoder.reset();
+        
+        while (m_leftEncoder.getDistance() + m_rightEncoder.getDistance() != dist) {
+          arcadeDrive(speed, rotation);
+        }
+
     }
     
 }

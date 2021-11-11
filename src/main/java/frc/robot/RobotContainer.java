@@ -8,9 +8,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.Drivetrain;
+import frc.robot.commands.PIDAuto;
 import frc.robot.commands.Shoot;
-import frc.robot.commands.Belt;
-import frc.robot.commands.BeltStop;
+// import frc.robot.commands.Belt;
+// import frc.robot.commands.BeltStop;
 import frc.robot.commands.ShootStop;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.Shooter;
@@ -18,13 +19,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
+
 
 public class RobotContainer {
   
@@ -72,6 +73,11 @@ public class RobotContainer {
   // }
 
   public DrivetrainSubsystem getDriveTrain() {
+    return m_drive;
+
+  }
+
+  public PIDAuto getAutonomousCommand() {
     return m_drive;
 
   }

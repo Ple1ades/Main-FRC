@@ -33,7 +33,10 @@ public final class Constants {
         public final static double kP = 1.0;
         public final static double kI = 0.5;
         public final static double kD = 0.0;
+        public static final double leftSpeed = 3.0;
+        public static final double rightSpeed = 3.0;
         public static final double kWheelRadius = 0.0762;
         public static final int kEncoderResolution = -2048;
+        
     }
 }
