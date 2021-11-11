@@ -4,12 +4,17 @@
 
 package frc.robot;
 
-
 import edu.wpi.first.wpilibj.TimedRobot;
+
+import java.io.IOException;
+
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
+import java.nio.file.Path;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -27,13 +32,23 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
 
+<<<<<<< HEAD
+  
+ @Override
+  public void robotInit() {
+    m_robotContainer = new RobotContainer();
+
+    setNetworkTablesFlushEnabled(true);
+=======
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     
     m_robotContainer = new RobotContainer();
+>>>>>>> 4403a19ed88d09639b0ad9bf2093b80ae409dfbf
   }
+
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like
