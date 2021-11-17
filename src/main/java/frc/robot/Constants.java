@@ -39,4 +39,11 @@ public final class Constants {
         public static final int kEncoderResolution = -2048;
         
     }
+
+    public final class Vision {
+        public static final double kVisionP = 0.1;
+        public static final double kVisionLimit = 0.5;
+
+
+    }
 }
