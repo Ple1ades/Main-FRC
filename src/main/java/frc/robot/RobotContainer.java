@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.Drivetrain;
-import frc.robot.commands.PIDAuto;
+// import frc.robot.commands.PIDAuto;
 import frc.robot.commands.Shoot;
 // import frc.robot.commands.Belt;
 // import frc.robot.commands.BeltStop;
@@ -60,6 +60,8 @@ public class RobotContainer {
        ).whenReleased(
          new ShootStop(m_shooter), true
     );
+
+    new JoystickButton(joystick, buttonNumber)
     
   }
 
@@ -78,8 +80,8 @@ public class RobotContainer {
 
   }
 
-  public PIDAuto getAutonomousCommand() {
-    return m_drive;
+  // public PIDAuto getAutonomousCommand() {
+  //   return m_drive;
 
-  }
+  // }
 }

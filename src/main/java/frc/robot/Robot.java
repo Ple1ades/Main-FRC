@@ -32,21 +32,12 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
 
-<<<<<<< HEAD
-  
- @Override
-  public void robotInit() {
-    m_robotContainer = new RobotContainer();
-
-    setNetworkTablesFlushEnabled(true);
-=======
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     
     m_robotContainer = new RobotContainer();
->>>>>>> 4403a19ed88d09639b0ad9bf2093b80ae409dfbf
   }
 
 
