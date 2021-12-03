@@ -6,20 +6,26 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.Drivetrain;
-import frc.robot.commands.InverseVisionAlign;
+import frc.robot.commands.Kill;
+import frc.robot.commands.PneumaticMoveForward;
+import frc.robot.commands.PneumaticMoveReverse;
+
+// import frc.robot.commands.InverseVisionAlign;
 // import frc.robot.commands.PIDAuto;
 import frc.robot.commands.Shoot;
 // import frc.robot.commands.Belt;
 // import frc.robot.commands.BeltStop;
 import frc.robot.commands.ShootStop;
 import frc.robot.commands.VisionAlign;
+import frc.robot.commands.VisionFollow;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.Pneumatic;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import frc.robot.commands.inverseVisionAlign;
+// import frc.robot.commands.InverseVisionAlign;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -33,8 +39,10 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final Shooter m_shooter = new Shooter();
   public final DrivetrainSubsystem m_drive = new DrivetrainSubsystem();
-
+  
   private final XboxController m_XboxController = new XboxController(0);
+  
+  public final Pneumatic m_piston = new Pneumatic();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   
   public RobotContainer() {
@@ -57,17 +65,16 @@ public class RobotContainer {
     new JoystickButton(
          m_XboxController, 
          Button.kX.value).whenPressed(
-           new Shoot(m_shooter),true
+           new PneumaticMoveForward(m_piston),true
        ).whenReleased(
-         new ShootStop(m_shooter), true
+         new PneumaticMoveReverse(m_piston), true
     );
-
-    new JoystickButton(m_XboxController, 
-    Button.kY.value).whenPressed(
-        new VisionAlign(m_drive), true
-    );
-
-    new JoystickButton(m_XboxController, Button.kA.value).whenPressed(new InverseVisionAlign(m_drive), true);
+    // vision A = aling,
+    // vision Y = follow
+    // new JoystickButton(m_XboxController, Button.kA.value).whenHeld(new VisionAlign(m_drive), true);
+    // new JoystickButton(m_XboxController, Button.kY.value).whenHeld(new VisionFollow(m_drive), true);
+    
+    // new JoystickButton(m_XboxController, Button.kB.value).whenHeld(new Kill(m_drive), true);
     
   }
 
@@ -83,6 +90,11 @@ public class RobotContainer {
 
   public DrivetrainSubsystem getDriveTrain() {
     return m_drive;
+
+  }
+
+  public Pneumatic getPnumatic(){
+    return m_piston; 
 
   }
 

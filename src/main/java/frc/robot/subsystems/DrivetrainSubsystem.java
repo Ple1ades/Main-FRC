@@ -13,6 +13,7 @@ import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -23,8 +24,6 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.NetworkTable;
 
-
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
@@ -33,6 +32,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
   // tracking
   NetworkTable m_table = NetworkTableInstance.getDefault().getTable("limelight");
   NetworkTableEntry tx = m_table.getEntry("tx");
+  NetworkTableEntry ta = m_table.getEntry("ta");
 
 
 
@@ -97,20 +97,33 @@ public class DrivetrainSubsystem extends SubsystemBase{
       }
   
   }
+  public void limeFollow(){
+    double a = ta.getDouble(-1000.0);
+    double output = 0;
+    double ref = 3;
+    a -= ref;
+    System.out.println(a);
+    if (!(a == - ref) && !(a > -0.5 && a < 0.5)){
+      
+    }
+    else{
+      a = 0;
+    }
+    output = a;
+    output *= Constants.Vision.kVisionLimit;
+    m_drive.tankDrive(output, output);
+    
+  }
+  
   public void limeAlign () {
     double x = tx.getDouble(0.0);
     double output = 0;
     output = x * Constants.Vision.kVisionP;
     output *= Constants.Vision.kVisionLimit;
     
-    m_drive.tankDrive(output, -output);
-  }
-  public void inverseVisionAlign () {
-    double x = tx.getDouble(0.0);
-    double output = 0;
-    output = x * Constants.Vision.kVisionP;
-    output *= Constants.Vision.kVisionLimit;
-    
     m_drive.tankDrive(-output, output);
+  }
+  public void kill(){
+    m_drive.tankDrive(0,0);
   }
 }

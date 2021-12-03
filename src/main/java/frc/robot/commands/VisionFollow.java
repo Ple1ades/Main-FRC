@@ -10,10 +10,10 @@ import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.Timer;
 
 
-public class InverseVisionAlign extends CommandBase{
+public class VisionFollow extends CommandBase{
     @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
     private final DrivetrainSubsystem m_drive;
-    public InverseVisionAlign(DrivetrainSubsystem drive){
+    public VisionFollow(DrivetrainSubsystem drive){
         m_drive = drive;
         addRequirements(drive);
     }
@@ -24,7 +24,7 @@ public class InverseVisionAlign extends CommandBase{
 
     @Override
     public void execute() {
-        m_drive.inverseVisionAlign();
+        m_drive.limeFollow();
     }
 
     @Override

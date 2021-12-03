@@ -21,7 +21,7 @@ public final class Constants {
         public static final double kI = 0.0;
         public static final double kD = 0.0;
         public static final double beltSpeed = 1;
-        public static final int maxRPM = 1500;
+        public static final int maxRPM = 3000;
         public static final int maxVoltage = 10;
     }
 
@@ -45,5 +45,13 @@ public final class Constants {
         public static final double kVisionLimit = 0.5;
 
 
+    }
+    public final class Pneumatics{
+        public static final double minAirPressure = 0.0;
+        public static final double maxAirPressure = 0.0;
+        public static final int solenoidIDA = 9;
+        public static final int solenoidIDB = 4;
+        public static final int solenoidIDC = 5;
+        public static final int CANID = 0;
     }
 }
